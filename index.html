@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Confirmer Demo</title>
+    </head>
+    <body ng-controller="DemoController as vm">
+
+        <h1>Old School Confirm</h1>
+
+        <h2> Confirm On Button Click (ngClick) 1 </h2>
+        <ul>
+            <li ng-repeat="item in vm.items">
+                {{ item.name }} - {{ item.address }}
+                <button type="button" ng-click="vm.onClickDeleteButton( item, $index )" confirm="Are you sure you want to remove {{ item.name }} ?"> Delete </button>
+            </li>
+        </ul>
+
+        <h2> Confirm On Button Click (ngClick) 2 </h2>
+
+        <button type="button" ng-click="vm.read = !vm.read" confirm="{{ vm.read ? 'Mark as not read ?' : 'Mark this conversation as read ?' }}"> {{ vm.read ? 'Mark as Unread' : 'Mark as Read' }}  </button>
+
+        <h2> Confirm On Change (ngChange) </h2>
+        <select ng-model="vm.role" ng-change="vm.onRoleChange( vm.role, $oldValue )" confirm="Sure you want to make this user {{ vm.user.role }} ?" confirm-cancel="vm.onRoleChangeCancel( $oldValue )" ng-options="role.toString() as role for role in vm.roleOptions">
+            <option value=""> Choose Role </option>
+        </select>
+
+
+
+        <h2> Confirm On Submit (ngSubmit) </h2>
+
+        <form role="form" ng-submit="vm.onFormSubmit( vm.user ); vm.user={};" confirm="Sure you want to save?">
+            <p>
+                <input ng-model="vm.user.name" type="text" value="" placeholder="Full Name">
+            </p>
+
+            <p>
+                <input ng-model="vm.user.email" type="text" value="" placeholder="Email">
+            </p>
+
+            <p>
+                <input ng-model="vm.user.address" type="text" value="" placeholder="Address">
+            </p>
+
+            <p>
+                <button type="submit"> Save </button>
+            </p>
+        </form>
+
+        <h2> Conditional Confirm </h2>
+
+        <form role="form" ng-submit="vm.onFormSubmit( vm.post ); vm.post={};" confirm="Save and publish ?" confirm-on="vm.post.publish">
+            <p>
+                <input ng-model="vm.post.title" type="text" value="" placeholder="Title">
+            </p>
+
+            <p>
+                <input ng-model="vm.post.content" type="text" value="" placeholder="Detail">
+            </p>
+
+            <p>
+                <label> Publish </label>
+                <input ng-model="vm.post.publish" type="checkbox" />
+
+            </p>
+
+            <p>
+                <button type="submit"> Done </button>
+                <small ng-show="vm.post.publish"> Will Confirm</small>
+                <small ng-hide="vm.post.publish"> Will Not Confirm</small>
+                <small> {{ $abc }} </small>
+            </p>
+        </form>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js" charset="utf-8"></script>
+        <script src="https://cdn.rawgit.com/lekhnath/angular-confirmer/master/confirmer.js" charset="utf-8"></script>
+        <script src="app.js" charset="utf-8"></script>
+
+    </body>
+</html>
