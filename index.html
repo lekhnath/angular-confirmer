@@ -21,7 +21,7 @@
         <button type="button" ng-click="vm.read = !vm.read" confirm="{{ vm.read ? 'Mark as not read ?' : 'Mark this conversation as read ?' }}"> {{ vm.read ? 'Mark as Unread' : 'Mark as Read' }}  </button>
 
         <h2> Confirm On Change (ngChange) </h2>
-        <select ng-model="vm.role" ng-change="vm.onRoleChange( vm.role, $oldValue )" confirm="Sure you want to make this user {{ vm.user.role }} ?" confirm-cancel="vm.onRoleChangeCancel( $oldValue )" ng-options="role.toString() as role for role in vm.roleOptions">
+        <select ng-model="vm.role" ng-change="vm.onRoleChange( vm.role, $oldValue )" confirm="Sure you want to make this user {{ vm.role }} ?" confirm-cancel="vm.onRoleChangeCancel( $oldValue )" ng-options="role.toString() as role for role in vm.roleOptions">
             <option value=""> Choose Role </option>
         </select>
 
