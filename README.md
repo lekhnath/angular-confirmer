@@ -16,3 +16,7 @@
     `<button ng-click="handler()" confirm="Are you sure ?"></button>`
 
 4. Believe it or not you are done! `handler()` function will be invoked only after authenticating `confirm` in above example.
+
+### Example
+
+Here are some examples http://lekhnath.github.io/angular-confirmer/
